@@ -1,0 +1,22 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shivam0Anand/chatApp.git"
+  },
+  "author": "Shivam Anand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shivam0Anand/chatApp/issues"
+  },
+  "homepage": "https://github.com/Shivam0Anand/chatApp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

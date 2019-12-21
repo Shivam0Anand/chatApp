@@ -4,11 +4,10 @@ socket.on("message", message => {
   console.log(message);
 });
 
-// socket.on("countUpdated", count => {
-//   console.log("updated count!", count);
-// });
+document.querySelector("#message-form").addEventListener("submit", e => {
+  e.preventDefault();
 
-// document.querySelector("#increment").addEventListener("click", () => {
-//   console.log("clicked");
-//   socket.emit("increment");
-// });
+  const message = document.querySelector("input").value;
+
+  socket.emit("sendMessage", message);
+});

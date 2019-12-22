@@ -18,14 +18,14 @@ io.on("connection", socket => {
   console.log("new websoket connection");
 
   socket.emit("message", "Welcome!");
-  socket.broadcast.emit("message", "new user joined!");
+  socket.broadcast.emit("message", "नए उपयोगकर्ता शामिल हुए!");
 
   socket.on("sendMessage", message => {
     io.emit("message", message);
   });
 
   socket.on("disconnect", () => {
-    io.emit("message", "A User has Left!");
+    io.emit("message", "एक उपयोगकर्ता छोड़ दिया है!");
   });
 });
 

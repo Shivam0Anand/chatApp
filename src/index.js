@@ -24,6 +24,10 @@ io.on("connection", socket => {
     io.emit("message", message);
   });
 
+  socket.on("sendlocation", coords => {
+    io.emit("message", `Location: ${coords.latitude}`);
+  });
+
   socket.on("disconnect", () => {
     io.emit("message", "एक उपयोगकर्ता छोड़ दिया है!");
   });

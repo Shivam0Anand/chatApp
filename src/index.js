@@ -25,7 +25,7 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    io.emit("message", "a user has left!");
+    io.emit("message", "A User has Left!");
   });
 });
 

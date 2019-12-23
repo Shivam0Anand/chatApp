@@ -2,6 +2,7 @@ const path = require("path");
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
+const Filter = require('bad-words')
 
 const app = express();
 const server = http.createServer(app);
@@ -21,8 +22,15 @@ io.on("connection", socket => {
   socket.broadcast.emit("message", "नए उपयोगकर्ता शामिल हुए!");
 
   socket.on("sendMessage", (message, callback) => {
+
+    const filter = new Filter()
+
+    if (filter.isProfane(message)) {
+      return callback('Gali is not allowed!')
+    }
+
     io.emit("message", message)
-    callback()
+    callback('Delivered!')
   });
 
   socket.on("sendlocation", coords => {

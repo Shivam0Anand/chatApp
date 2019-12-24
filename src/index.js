@@ -34,11 +34,12 @@ io.on("connection", socket => {
     callback('Delivered!')
   });
 
-  socket.on("sendlocation", coords => {
+  socket.on("sendlocation", (coords, callback) => {
     io.emit(
       "message",
       `https://google.com/maps?q=${coords.latitude},${coords.longitude}`
-    );
+    )
+    callback()
   });
 
   socket.on("disconnect", () => {

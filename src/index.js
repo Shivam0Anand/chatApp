@@ -24,6 +24,7 @@ io.on("connection", socket => {
   socket.on("sendMessage", (message, callback) => {
 
     const filter = new Filter()
+    filter.removeWords('hell', 'fuck');
 
     if (filter.isProfane(message)) {
       return callback('Gali is not allowed!')

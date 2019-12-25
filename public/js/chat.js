@@ -40,8 +40,8 @@ $messageForm.addEventListener("submit", e => {
     $messageFormButton.removeAttribute('disabled')
     $messageFormInput.value = ''
     $messageFormInput.focus()
+    
   // enable
-
     if (error) {
       return console.log(error)
     }

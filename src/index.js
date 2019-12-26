@@ -22,7 +22,7 @@ io.on("connection", socket => {
   console.log("new websoket connection");
 
   socket.emit("message", generateMessage('Welcome!'));
-  socket.broadcast.emit("message", "नए उपयोगकर्ता शामिल हुए!");
+  socket.broadcast.emit("message", generateMessage("नए उपयोगकर्ता शामिल हुए|"));
 
   socket.on("sendMessage", (message, callback) => {
 
@@ -33,7 +33,7 @@ io.on("connection", socket => {
       return callback('Gali is not allowed!')
     }
 
-    io.emit("message", message)
+    io.emit("message", generateMessage(message))
     callback('Delivered!')
   });
 
@@ -46,7 +46,7 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    io.emit("message", "एक उपयोगकर्ता छोड़ दिया है!");
+    io.emit("message", generateMessage("एक उपयोगकर्ता छोड़ दिया है!"));
   });
 });
 

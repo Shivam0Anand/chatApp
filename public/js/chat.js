@@ -13,13 +13,13 @@ const locationMessageTemplate = document.querySelector('#location-message-templa
 
 socket.on("message", message => {
   console.log(message);
-  const html = Mustache.render(messageTemplate,{
-    message
+  const html = Mustache.render(messageTemplate, {
+    message: message.text
   })
   $messages.insertAdjacentHTML('beforeend', html)
 });
 
-socket.on('locationMessage',(url)=>{
+socket.on('locationMessage', (url) => {
   console.log(url)
   const html = Mustache.render(locationMessageTemplate, {
     url
@@ -35,13 +35,13 @@ $messageForm.addEventListener("submit", e => {
   // disable
   const message = e.target.elements.message.value;
 
-  socket.emit("sendMessage", message, (error)=>{
+  socket.emit("sendMessage", message, (error) => {
 
     $messageFormButton.removeAttribute('disabled')
     $messageFormInput.value = ''
     $messageFormInput.focus()
-    
-  // enable
+
+    // enable
     if (error) {
       return console.log(error)
     }
@@ -61,7 +61,7 @@ $sendLocationButton.addEventListener("click", () => {
     socket.emit("sendlocation", {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
-    }, ()=>{
+    }, () => {
       $sendLocationButton.removeAttribute('disabled')
       console.log("Location Shared!")
     });

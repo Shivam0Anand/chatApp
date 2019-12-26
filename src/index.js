@@ -3,7 +3,9 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const Filter = require('bad-words')
-const {generateMesssage} = require('./utils/messages')
+const {
+  generateMessage
+} = require('./utils/messages')
 
 const app = express();
 const server = http.createServer(app);
@@ -19,10 +21,7 @@ let count = 0;
 io.on("connection", socket => {
   console.log("new websoket connection");
 
-  socket.emit("message", {
-    text: 'Welcome',
-    createdAt: new Date().getTime()
-  });
+  socket.emit("message", generateMessage('Welcome!'));
   socket.broadcast.emit("message", "नए उपयोगकर्ता शामिल हुए!");
 
   socket.on("sendMessage", (message, callback) => {

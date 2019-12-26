@@ -1,6 +1,10 @@
 const generateMessage = (text) =>{
     return{
         text,
-        createdAt: new Date
+        createdAt: new Date().getTime()
     }
+}
+
+module.exports = {
+    generateMessage
 }

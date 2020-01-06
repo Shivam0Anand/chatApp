@@ -22,8 +22,16 @@ let count = 0;
 io.on("connection", socket => {
   console.log("new websoket connection");
 
-  socket.emit("message", generateMessage('Welcome!'));
-  socket.broadcast.emit("message", generateMessage("नए उपयोगकर्ता शामिल हुए|"));
+  socket.on('join', ({
+    username,
+    room
+  }) => {
+    socket.join(room)
+
+    socket.emit("message", generateMessage('Welcome!'));
+    socket.broadcast.to(room).emit("message", generateMessage(`${username} शामिल हुए !`));
+
+  })
 
   socket.on("sendMessage", (message, callback) => {
 

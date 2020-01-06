@@ -39,3 +39,13 @@ const addUser = ({
         user
     }
 }
+
+const removeUser = (id) => {
+    const index = users.findIndex((user) => {
+        return user.id === user
+    })
+
+    if (index !== -1) {
+        return users.splice(index, 1)
+    }
+}

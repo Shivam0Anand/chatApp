@@ -29,19 +29,15 @@ let count = 0;
 io.on("connection", socket => {
   console.log("new websoket connection");
 
-  socket.on('join', ({
-    username,
-    room
-  }) => {
+  socket.on('join', (options, callback) => {
 
     const {
       error,
       user
     } = addUser({
       id: socket.id,
-      username,
-      room
-    }, callback)
+      ...options
+    })
 
     if (error) {
       return callback(error)
@@ -49,17 +45,19 @@ io.on("connection", socket => {
 
 
 
-    socket.join(room)
+    socket.join(user.room)
 
     socket.emit("message", generateMessage('Welcome!'));
-    socket.broadcast.to(room).emit("message", generateMessage(`${username} शामिल हुए !`));
+    socket.broadcast.to(user.room).emit("message", generateMessage(`${user.username} शामिल हुए !`));
+
+    callback()
 
   })
 
   socket.on("sendMessage", (message, callback) => {
 
-    const filter = new Filter()
     filter.removeWords('hell', 'fuck');
+    const filter = new Filter()
 
     if (filter.isProfane(message)) {
       return callback('Gali is not allowed!')

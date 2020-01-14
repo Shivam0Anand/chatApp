@@ -41,10 +41,10 @@ io.on("connection", socket => {
       id: socket.id,
       username,
       room
-    })
+    }, callback)
 
     if (error) {
-
+      return callback(error)
     }
 
 

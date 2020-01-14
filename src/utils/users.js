@@ -34,7 +34,7 @@ const addUser = ({
         username,
         room
     }
-    user.push(user)
+    users.push(user)
     return {
         user
     }

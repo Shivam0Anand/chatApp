@@ -8,6 +8,13 @@ const {
   generateLocationMessage
 } = require('./utils/messages')
 
+const {
+  addUser,
+  removeUser,
+  getUser,
+  getUserInRoom
+} = require('./utils/users')
+
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -26,6 +33,22 @@ io.on("connection", socket => {
     username,
     room
   }) => {
+
+    const {
+      error,
+      user
+    } = addUser({
+      id: socket.id,
+      username,
+      room
+    })
+
+    if (error) {
+
+    }
+
+
+
     socket.join(room)
 
     socket.emit("message", generateMessage('Welcome!'));

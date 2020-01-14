@@ -76,7 +76,12 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    io.emit("message", generateMessage("एक उपयोगकर्ता छोड़ दिया है!"));
+    const user = removeUser(socket.id)
+
+    if (user) {
+      io.to(user.room).emit('message', generateMessage(`${user.username} छोड़ दिया है!`));
+    }
+
   });
 });
 

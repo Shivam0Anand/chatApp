@@ -181,7 +181,7 @@ button:disabled {
   font-weight: 300;
   padding: 12px 24px 0 24px;
 }
-
+/* 
 @media all and (min-width: 768px) {
   html {
     font-size: 40px;
@@ -195,4 +195,4 @@ button:disabled {
     width: 50vw;
     height: 50vh;
   }
-}
+} */
